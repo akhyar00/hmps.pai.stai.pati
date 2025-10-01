@@ -1,12 +1,20 @@
 /* --- 1. Import Font & Pengaturan Dasar --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
 
+html {
+    scroll-behavior: smooth;
+}
 body {
-    font-family: 'Poppins', sans-serif; margin: 0; background-color: #f8f9fa;
-    color: #343a40; line-height: 1.6;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    /* --- LATAR BELAKANG GRADASI BARU --- */
+    background: linear-gradient(135deg, #e0f7fa 0%, #f8bbd0 100%);
+    color: #343a40;
+    line-height: 1.6;
 }
 
-/* --- 2. Header --- */
+/* --- 2. Header (Tidak Berubah) --- */
 .site-header { box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .pre-header { background-color: #ffffff; padding: 10px 0; border-bottom: 1px solid #e0e0e0; }
 .pre-header .container, .main-nav .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; align-items: center; }
@@ -26,29 +34,71 @@ body {
 
 /* --- 3. Main Content & Section --- */
 main { padding: 40px 15px; }
-section { margin-bottom: 50px; background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); max-width: 1200px; margin-left: auto; margin-right: auto; }
+section {
+    margin-bottom: 50px;
+    background-color: rgba(255, 255, 255, 0.8); /* Latar belakang semi-transparan */
+    backdrop-filter: blur(10px); /* Efek glassmorphism */
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
 section h2 { text-align: center; color: #004d40; margin-bottom: 40px; font-size: 2.2em; font-weight: 700; }
 
 /* --- 4. GAYA BAGAN HIERARKI --- */
 .org-chart-top { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
 .level-1 { margin-bottom: 30px; }
 .level-2 { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-.divider { text-align: center; margin: 40px 0; font-size: 1.2em; font-weight: 600; color: #adb5bd; display: flex; align-items: center; }
-.divider::before, .divider::after { content: ''; flex-grow: 1; background-color: #dee2e6; height: 1px; margin: 0 15px; }
-
-/* Gaya Departemen */
+.divider { text-align: center; margin: 40px 0; font-size: 1.2em; font-weight: 600; color: #004d40; display: flex; align-items: center; }
+.divider::before, .divider::after { content: ''; flex-grow: 1; background-color: rgba(0, 77, 64, 0.3); height: 1px; margin: 0 15px; }
 .department { margin-bottom: 40px; }
-.department-title { font-weight: 600; text-align: center; margin-bottom: 30px; font-size: 1.6em; color: #007bff; border-bottom: 2px solid #dee2e6; padding-bottom: 15px; }
-/* PENAMBAHAN BARU DI SINI */
+.department-title { font-weight: 600; text-align: center; margin-bottom: 30px; font-size: 1.6em; color: #0d47a1; border-bottom: 2px solid #dee2e6; padding-bottom: 15px; }
 .department-coordinator { display: flex; justify-content: center; margin-bottom: 20px; }
 .department-members { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 
-/* Gaya Kartu */
-.card { background: #ffffff; border-radius: 12px; padding: 25px; width: 190px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 77, 64, 0.15); }
-.card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid #f1f3f5; }
-.card .nama { font-weight: 600; font-size: 1.1em; margin-bottom: 5px; }
-.card .jabatan { font-size: 0.9em; color: #6c757d; }
+/* --- 5. DESAIN KARTU BARU (TANPA FOTO) --- */
+.card {
+    background: linear-gradient(145deg, #ffffff, #f1f3f5);
+    border-radius: 15px;
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #fff;
+    position: relative;
+    overflow: hidden;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 77, 64, 0.2);
+}
+.card::before {
+    content: '\f007'; /* Ikon user dari Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 2.5em;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    display: block;
+}
+.card .nama {
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #004d40;
+}
+.card .jabatan {
+    font-size: 0.9em;
+    color: #6c757d;
+    background-color: #e9ecef;
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 12px;
+}
 
-/* --- 5. Footer --- */
+/* --- 6. Footer --- */
 footer { text-align: center; padding: 30px; background-color: #343a40; color: #adb5bd; }
