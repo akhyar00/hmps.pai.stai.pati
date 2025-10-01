@@ -14,30 +14,40 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Fungsi untuk membuat bagian departemen (tidak berubah)
+    // --- FUNGSI BARU UNTUK MEMBUAT BAGIAN DEPARTEMEN SECARA HIERARKI ---
     function createDepartmentSection(title, departmentData) {
-        let membersHtml = '';
-        if (departmentData.koordinator) {
-            membersHtml += createMemberCard(departmentData.koordinator);
-        }
-        departmentData.anggota.forEach(member => {
-            membersHtml += createMemberCard(member);
-        });
-        return `
+        // Mulai dengan judul departemen
+        let sectionHtml = `
             <div class="department">
                 <div class="department-title">${title}</div>
-                <div class="members">${membersHtml}</div>
-            </div>
         `;
+
+        // Tambahkan Koordinator di level atas
+        if (departmentData.koordinator) {
+            sectionHtml += `
+                <div class="department-coordinator">
+                    ${createMemberCard(departmentData.koordinator)}
+                </div>
+            `;
+        }
+
+        // Tambahkan Anggota di bawahnya
+        sectionHtml += '<div class="department-members">';
+        departmentData.anggota.forEach(member => {
+            sectionHtml += createMemberCard(member);
+        });
+        sectionHtml += '</div></div>'; // Tutup .department-members dan .department
+        
+        return sectionHtml;
     }
     
-    // --- LOGIKA BARU UNTUK MEMBANGUN BAGAN SECARA HIERARKI ---
+    // --- Logika untuk membangun bagan utama (tidak berubah) ---
 
     // 1. Ambil data BPH
-    const ketuaUmum = dataPengurus.bph[0]; // Asumsi Ketua Umum selalu di posisi pertama
-    const jajaranBPH = dataPengurus.bph.slice(1); // Ambil sisanya (Sekretaris & Bendahara)
+    const ketuaUmum = dataPengurus.bph[0];
+    const jajaranBPH = dataPengurus.bph.slice(1);
 
-    // 2. Buat HTML untuk level atas (Ketua Umum)
+    // 2. Buat HTML untuk level atas BPH (Ketua Umum)
     let baganHtml = `
         <div class="org-chart-top">
             <div class="level-1">
@@ -45,20 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
     `;
 
-    // 3. Buat HTML untuk level kedua (Sekretaris & Bendahara)
+    // 3. Buat HTML untuk level kedua BPH (Sekretaris & Bendahara)
     baganHtml += '<div class="level-2">';
     jajaranBPH.forEach(member => {
         baganHtml += createMemberCard(member);
     });
     baganHtml += '</div></div>';
 
-    // 4. Tambahkan garis pemisah sebelum departemen
+    // 4. Tambahkan garis pemisah
     baganHtml += '<div class="divider">DEPARTEMEN</div>';
 
-    // 5. Tampilkan semua ke dalam container
+    // 5. Tampilkan BPH ke dalam container
     baganContainer.innerHTML = baganHtml;
 
-    // 6. Buat HTML untuk departemen-departemen (seperti sebelumnya)
+    // 6. Buat dan tampilkan setiap departemen menggunakan fungsi baru
     baganContainer.innerHTML += createDepartmentSection('Departemen Pendidikan', dataPengurus.pendidikan);
     baganContainer.innerHTML += createDepartmentSection('Departemen Informasi & Komunikasi', dataPengurus.infokom);
     baganContainer.innerHTML += createDepartmentSection('Departemen Keagamaan & Sosial', dataPengurus.keagamaan);
