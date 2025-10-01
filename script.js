@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const baganContainer = document.getElementById('bagan-pengurus');
 
-    // --- FUNGSI CREATECARDCARD BARU (TANPA <img>) ---
+    // Fungsi createMemberCard (tidak berubah)
     function createMemberCard(member) {
-        // Kode ini sekarang hanya membuat div nama dan jabatan
         return `
             <div class="card">
                 <div class="nama">${member.nama}</div>
@@ -13,8 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Fungsi untuk membuat bagian departemen secara hierarki (tidak berubah)
+    // Fungsi createDepartmentSection (tidak berubah)
     function createDepartmentSection(title, departmentData) {
+        // Kita tambahkan class 'department' di sini agar bisa dianimasikan
         let sectionHtml = `<div class="department"><div class="department-title">${title}</div>`;
         if (departmentData.koordinator) {
             sectionHtml += `<div class="department-coordinator">${createMemberCard(departmentData.koordinator)}</div>`;
@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logika untuk membangun bagan utama (tidak berubah)
     const ketuaUmum = dataPengurus.bph[0];
     const jajaranBPH = dataPengurus.bph.slice(1);
+    // Kita tambahkan class 'org-chart-top' di sini agar bisa dianimasikan
     let baganHtml = `<div class="org-chart-top"><div class="level-1">${createMemberCard(ketuaUmum)}</div>`;
     baganHtml += '<div class="level-2">';
     jajaranBPH.forEach(member => { baganHtml += createMemberCard(member); });
@@ -40,5 +41,20 @@ document.addEventListener('DOMContentLoaded', function() {
     baganContainer.innerHTML += createDepartmentSection('Departemen Informasi & Komunikasi', dataPengurus.infokom);
     baganContainer.innerHTML += createDepartmentSection('Departemen Keagamaan & Sosial', dataPengurus.keagamaan);
     baganContainer.innerHTML += createDepartmentSection('Departemen Kewirausahaan', dataPengurus.kewirausahaan);
+
+    // --- FUNGSI BARU UNTUK MEMICU ANIMASI SAAT GULIR ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1 // Muncul saat 10% elemen terlihat
+    });
+
+    // Ambil semua elemen yang ingin dianimasikan dan amati
+    const elementsToAnimate = document.querySelectorAll('.org-chart-top, .department');
+    elementsToAnimate.forEach(el => observer.observe(el));
 
 });
