@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Hanya mengambil elemen yang ada di HTML
     const baganContainer = document.getElementById('bagan-pengurus');
 
-    // Fungsi untuk membuat kartu anggota
+    // Fungsi untuk membuat kartu anggota (tidak berubah)
     function createMemberCard(member) {
-        // Kita gunakan 'default.png' sebagai gambar placeholder
         const photoUrl = 'images/foto_pengurus/default.png';
         return `
             <div class="card">
@@ -16,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Fungsi untuk membuat bagian departemen
+    // Fungsi untuk membuat bagian departemen (tidak berubah)
     function createDepartmentSection(title, departmentData) {
         let membersHtml = '';
         if (departmentData.koordinator) {
@@ -33,18 +31,37 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
     
-    // 1. Membangun Bagan Struktur Organisasi
-    let bphHtml = '<div class="department"><div class="department-title">Badan Pengurus Harian (BPH)</div><div class="members">';
-    dataPengurus.bph.forEach(member => { bphHtml += createMemberCard(member); });
-    bphHtml += '</div></div>';
-    baganContainer.innerHTML += bphHtml;
+    // --- LOGIKA BARU UNTUK MEMBANGUN BAGAN SECARA HIERARKI ---
 
+    // 1. Ambil data BPH
+    const ketuaUmum = dataPengurus.bph[0]; // Asumsi Ketua Umum selalu di posisi pertama
+    const jajaranBPH = dataPengurus.bph.slice(1); // Ambil sisanya (Sekretaris & Bendahara)
+
+    // 2. Buat HTML untuk level atas (Ketua Umum)
+    let baganHtml = `
+        <div class="org-chart-top">
+            <div class="level-1">
+                ${createMemberCard(ketuaUmum)}
+            </div>
+    `;
+
+    // 3. Buat HTML untuk level kedua (Sekretaris & Bendahara)
+    baganHtml += '<div class="level-2">';
+    jajaranBPH.forEach(member => {
+        baganHtml += createMemberCard(member);
+    });
+    baganHtml += '</div></div>';
+
+    // 4. Tambahkan garis pemisah sebelum departemen
+    baganHtml += '<div class="divider">DEPARTEMEN</div>';
+
+    // 5. Tampilkan semua ke dalam container
+    baganContainer.innerHTML = baganHtml;
+
+    // 6. Buat HTML untuk departemen-departemen (seperti sebelumnya)
     baganContainer.innerHTML += createDepartmentSection('Departemen Pendidikan', dataPengurus.pendidikan);
     baganContainer.innerHTML += createDepartmentSection('Departemen Informasi & Komunikasi', dataPengurus.infokom);
     baganContainer.innerHTML += createDepartmentSection('Departemen Keagamaan & Sosial', dataPengurus.keagamaan);
     baganContainer.innerHTML += createDepartmentSection('Departemen Kewirausahaan', dataPengurus.kewirausahaan);
-
-    // Bagian kode untuk Slider dan Artikel sudah dihapus dari versi ini
-    // karena tidak ditampilkan di HTML.
 
 });
