@@ -1,32 +1,111 @@
-/* --- Gaya Dasar --- */
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
-header, footer { background-color: #0d47a1; color: white; text-align: center; padding: 25px 15px; }
-header h1 { margin: 0; }
-header h2 { margin: 5px 0 0; font-weight: normal; }
-main { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-section { margin-bottom: 40px; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
-h2 { text-align: center; color: #0d47a1; margin-bottom: 30px; font-size: 2em; }
-/* --- Gaya Bagan Organisasi --- */
-.department { margin-bottom: 40px; }
-.department-title { font-weight: bold; text-align: center; margin-bottom: 20px; font-size: 1.5em; color: #1e88e5; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
-.members { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
-.card { background: #ffffff; border-radius: 10px; padding: 20px; width: 180px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.card:hover { transform: translateY(-8px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-.card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #e0e0e0; }
-.card .nama { font-weight: bold; font-size: 1.1em; }
-.card .jabatan { font-size: 0.9em; color: #555; }
-/* --- Gaya Slider Program Kerja --- */
-.slider { position: relative; overflow: hidden; width: 100%; height: 400px; border-radius: 10px; }
-.slide-item { text-align: center; }
-.slide-item img { width: 100%; height: 100%; object-fit: cover; }
-.slide-item .caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0, 0, 0, 0.6); color: white; padding: 20px; }
-.caption h3 { margin: 0 0 10px; }
-.caption p { margin: 0; }
-/* --- Gaya Galeri Artikel --- */
-.article-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-.article-card { background-color: #fff; border-radius: 10px; overflow: hidden; text-decoration: none; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-.article-card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.12); }
-.article-card img { width: 100%; height: 180px; object-fit: cover; }
-.article-card .info { padding: 15px; }
-.article-card h4 { margin: 0 0 10px; }
-.article-card span { font-size: 0.8em; color: #777; }
+/* --- 1. Import Font & Pengaturan Dasar --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa; /* Latar belakang abu-abu sangat muda */
+    color: #343a40; /* Warna teks lebih lembut dari hitam pekat */
+    line-height: 1.6;
+}
+
+/* --- 2. Header dengan Gradien Elegan --- */
+header {
+    background: linear-gradient(90deg, #0056b3 0%, #007bff 100%);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    box-shadow: 0 4px M10px rgba(0, 0, 0, 0.1);
+}
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+header h2 {
+    margin: 10px 0 0;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* --- 3. Layout Utama & Section --- */
+main {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+section {
+    margin-bottom: 50px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px; /* Sudut lebih tumpul untuk kesan modern */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07); /* Shadow lebih halus dan menyebar */
+    border: 1px solid #e9ecef;
+}
+h2 {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 40px;
+    font-size: 2.2em;
+    font-weight: 600;
+}
+
+/* --- 4. Kartu Pengurus yang Ditingkatkan --- */
+.department-title {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.6em;
+    color: #007bff;
+    border-bottom: 2px solid #dee2e6;
+    padding-bottom: 15px;
+}
+.members {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* Jarak antar kartu */
+}
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    width: 190px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-10px); /* Efek terangkat saat disentuh mouse */
+    box-shadow: 0 10px 30px rgba(0, 86, 179, 0.15); /* Shadow biru saat hover */
+}
+.card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #f1f3f5;
+    transition: border-color 0.3s ease;
+}
+.card:hover img {
+    border-color: #007bff; /* Border gambar berubah warna saat hover */
+}
+.card .nama {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+.card .jabatan {
+    font-size: 0.9em;
+    color: #6c757d; /* Abu-abu untuk jabatan */
+}
+
+/* --- 5. Footer --- */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #e9ecef;
+    color: #6c757d;
+    margin-top: 40px;
+}
