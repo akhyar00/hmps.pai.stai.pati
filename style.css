@@ -2,144 +2,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background-color: #f0f2f5; /* Latar belakang sedikit lebih gelap */
-    color: #333;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-    display: inherit;
-    align-items: inherit;
-    justify-content: inherit;
+    font-family: 'Poppins', sans-serif; margin: 0; background-color: #f8f9fa;
+    color: #343a40; line-height: 1.6;
 }
 
-/* --- 2. Header Baru --- */
-.site-header {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+/* --- 2. Header (Tidak Berubah) --- */
+.site-header { box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.pre-header { background-color: #ffffff; padding: 10px 0; border-bottom: 1px solid #e0e0e0; }
+.pre-header .container, .main-nav .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; align-items: center; }
+.pre-header .container { justify-content: space-between; }
+.pre-header .logo { display: flex; align-items: center; }
+.pre-header .logo img { height: 40px; margin-right: 15px; }
+.pre-header .logo span { font-weight: 600; color: #333; }
+.social-icons { display: flex; align-items: center; gap: 10px; }
+.social-icons a { color: #555; text-decoration: none; font-size: 16px; width: 35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 50%; transition: background-color 0.3s, color 0.3s; }
+.social-icons a:hover { background-color: #004d40; color: #fff; }
+.social-icons a.search-icon { background-color: #ffc107; color: #333; }
+.social-icons a.search-icon:hover { background-color: #e0a800; }
+.main-nav { background-color: #004d40; padding: 10px 0; }
+.main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; justify-content: flex-start; }
+.main-nav a { color: #ffffff; text-decoration: none; padding: 10px 20px; display: block; font-weight: 600; text-transform: uppercase; font-size: 14px; transition: background-color 0.3s; }
+.main-nav a:hover, .main-nav a.active { background-color: rgba(255, 255, 255, 0.1); }
 
-/* Bagian Atas Header (Pre-header) */
-.pre-header {
-    background-color: #ffffff;
-    padding: 10px 0;
-    border-bottom: 1px solid #e0e0e0;
-}
-.pre-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.pre-header .logo {
-    display: flex;
-    align-items: center;
-}
-.pre-header .logo img {
-    height: 40px;
-    margin-right: 15px;
-}
-.pre-header .logo span {
-    font-weight: 600;
-    color: #333;
-}
-.social-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.social-icons a {
-    color: #555;
-    text-decoration: none;
-    font-size: 16px;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: background-color 0.3s, color 0.3s;
-}
-.social-icons a:hover {
-    background-color: #004d40;
-    color: #fff;
-}
-.social-icons a.search-icon {
-    background-color: #ffc107;
-    color: #333;
-}
-.social-icons a.search-icon:hover {
-    background-color: #e0a800;
-}
+/* --- 3. Main Content & Section (Tidak Berubah) --- */
+main { padding: 40px 15px; }
+section { margin-bottom: 50px; background-color: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); max-width: 1200px; margin-left: auto; margin-right: auto; }
+section h2 { text-align: center; color: #004d40; margin-bottom: 40px; font-size: 2.2em; font-weight: 700; }
 
-/* Bagian Navigasi Utama */
-.main-nav {
-    background-color: #004d40; /* Warna hijau tua dari referensi */
-    padding: 10px 0;
-}
-.main-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+/* --- 4. GAYA BAGAN HIERARKI (BARU & REVISI) --- */
+.org-chart-top {
     display: flex;
-    justify-content: flex-start; /* Menu mulai dari kiri */
-}
-.main-nav a {
-    color: #ffffff;
-    text-decoration: none;
-    padding: 10px 20px;
-    display: block;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-.main-nav a:hover, .main-nav a.active {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* --- 3. Main Content & Struktur Card --- */
-main {
-    padding-top: 40px;
-}
-section {
-    margin-bottom: 50px;
-    background-color: white;
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-section h2 {
-    text-align: center;
-    color: #004d40;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 40px;
-    font-size: 2.2em;
-    font-weight: 700;
 }
-.department-title {
-    font-weight: 600; text-align: center; margin-bottom: 30px; font-size: 1.6em;
-    color: #007bff; border-bottom: 2px solid #dee2e6; padding-bottom: 15px;
+.level-1 {
+    margin-bottom: 30px;
 }
+.level-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+.divider {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #adb5bd;
+    display: flex;
+    align-items: center;
+}
+.divider::before, .divider::after {
+    content: '';
+    flex-grow: 1;
+    background-color: #dee2e6;
+    height: 1px;
+    margin: 0 15px;
+}
+
+/* Gaya Kartu & Departemen (Tidak Berubah) */
+.department-title { font-weight: 600; text-align: center; margin-bottom: 30px; font-size: 1.6em; color: #007bff; border-bottom: 2px solid #dee2e6; padding-bottom: 15px; }
 .members { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-.card {
-    background: #ffffff; border-radius: 12px; padding: 25px; width: 190px;
-    text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0, 77, 64, 0.15); /* Shadow hijau saat hover */
-}
-.card img {
-    width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
-    margin-bottom: 20px; border: 4px solid #f1f3f5;
-}
+.card { background: #ffffff; border-radius: 12px; padding: 25px; width: 190px; text-align: center; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 77, 64, 0.15); }
+.card img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid #f1f3f5; }
 .card .nama { font-weight: 600; font-size: 1.1em; margin-bottom: 5px; }
 .card .jabatan { font-size: 0.9em; color: #6c757d; }
 
-/* --- 4. Footer --- */
-footer {
-    text-align: center; padding: 30px; background-color: #343a40;
-    color: #adb5bd; margin-top: 40px;
-}
+/* --- 5. Footer (Tidak Berubah) --- */
+footer { text-align: center; padding: 30px; background-color: #343a40; color: #adb5bd; }
