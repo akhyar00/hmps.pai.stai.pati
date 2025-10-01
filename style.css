@@ -5,16 +5,26 @@
 html {
     scroll-behavior: smooth;
 }
+
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    /* --- LATAR BELAKANG GRADASI BARU --- */
-    background: linear-gradient(135deg, #e0f7fa 0%, #f8bbd0 100%);
     color: #343a40;
     line-height: 1.6;
+    /* --- LATAR BELAKANG ANIMASI BARU --- */
+    background: linear-gradient(-45deg, #e0f7fa, #b2ebf2, #f8bbd0, #f48fb1);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
 }
 
-/* --- 2. Header (Tidak Berubah) --- */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+/* --- 2. Header --- */
 .site-header { box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .pre-header { background-color: #ffffff; padding: 10px 0; border-bottom: 1px solid #e0e0e0; }
 .pre-header .container, .main-nav .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; align-items: center; }
@@ -36,8 +46,8 @@ body {
 main { padding: 40px 15px; }
 section {
     margin-bottom: 50px;
-    background-color: rgba(255, 255, 255, 0.8); /* Latar belakang semi-transparan */
-    backdrop-filter: blur(10px); /* Efek glassmorphism */
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -49,7 +59,17 @@ section {
 section h2 { text-align: center; color: #004d40; margin-bottom: 40px; font-size: 2.2em; font-weight: 700; }
 
 /* --- 4. GAYA BAGAN HIERARKI --- */
-.org-chart-top { display: flex; flex-direction: column; align-items: center; margin-bottom: 40px; }
+.org-chart-top, .department {
+    /* Animasi fade-in saat scroll */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.org-chart-top.visible, .department.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .level-1 { margin-bottom: 30px; }
 .level-2 { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 .divider { text-align: center; margin: 40px 0; font-size: 1.2em; font-weight: 600; color: #004d40; display: flex; align-items: center; }
@@ -59,45 +79,44 @@ section h2 { text-align: center; color: #004d40; margin-bottom: 40px; font-size:
 .department-coordinator { display: flex; justify-content: center; margin-bottom: 20px; }
 .department-members { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
 
-/* --- 5. DESAIN KARTU BARU (TANPA FOTO) --- */
+/* --- 5. DESAIN KARTU BARU (SESUAI REFERENSI) --- */
 .card {
-    background: linear-gradient(145deg, #ffffff, #f1f3f5);
-    border-radius: 15px;
-    padding: 20px;
-    width: 220px;
+    background: #ffffff;
+    border-radius: 20px; /* Sudut lebih tumpul */
+    padding: 25px;
+    width: 240px;
     text-align: center;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #fff;
-    position: relative;
-    overflow: hidden;
 }
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 12px 40px rgba(0, 77, 64, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 77, 64, 0.15);
 }
 .card::before {
     content: '\f007'; /* Ikon user dari Font Awesome */
     font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    font-size: 2.5em;
-    color: #e0e0e0;
-    margin-bottom: 15px;
+    font-weight: 400; /* Ikon lebih tipis */
+    font-size: 3em;
+    color: #ced4da; /* Warna ikon lebih soft */
+    margin-bottom: 20px;
     display: block;
 }
 .card .nama {
-    font-weight: 700;
-    font-size: 1.2em;
-    margin-bottom: 5px;
-    color: #004d40;
+    font-weight: 700; /* Nama lebih tebal */
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: #004d40; /* Warna nama sesuai header */
+    line-height: 1.2;
 }
 .card .jabatan {
-    font-size: 0.9em;
+    font-size: 0.95em;
     color: #6c757d;
-    background-color: #e9ecef;
+    background-color: #f1f3f5; /* Warna tag jabatan */
     display: inline-block;
-    padding: 3px 12px;
-    border-radius: 12px;
+    padding: 5px 15px;
+    border-radius: 15px;
 }
 
 /* --- 6. Footer --- */
